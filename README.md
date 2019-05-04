@@ -1,3 +1,3 @@
 # simula_food
 
-Simulador de restaunrate, java Multithreading & PUC Minas
+Simulador de restaurante, java Multithreading & PUC Minas
