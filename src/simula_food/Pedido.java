@@ -53,5 +53,16 @@ public class Pedido {
 	{
 		return this.cliente;
 	}
+	
+	@Override
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		
+		for(Produto p : this.items)
+			sb.append(p.toString() + ", ");
+		
+		return sb.toString().trim().replaceFirst(".$","");
+	}
 }
 

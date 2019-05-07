@@ -16,5 +16,11 @@ public class Sorvete extends Produto {
 	public TipoProduto GetTipo() {
 		return TipoProduto.Sobremesa;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return "Sorverte";
+	}
 
 }

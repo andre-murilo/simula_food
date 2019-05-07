@@ -4,6 +4,8 @@ import java.lang.Thread;
 public class Restaurante {
 	CLista clientes;
 	Cozinha cozinha;
+	public Boolean exiting;
+	
 	
 	public Cliente AddCliente(String nome)
 	{
@@ -26,11 +28,17 @@ public class Restaurante {
 	{
 		this.clientes = new CLista();
 		this.cozinha = new Cozinha();
+		this.exiting = false;
 		
 		
 		// create process thread
 		Thread t = new Thread(proc);
 		t.start();
+	}
+	
+	public void BeginExit()
+	{
+		this.exiting = true;
 	}
 	
 	
@@ -44,15 +52,15 @@ public class Restaurante {
 			//System.out.println("Thread criada!");
 			
 			
-			long startTime = System.currentTimeMillis();
+			long auxTime = System.currentTimeMillis();
 			long now = 0;
 			long delta = 0;
 			
-			while(true)
+			while(!exiting)
 			{
 				now = System.currentTimeMillis();
-				delta = now - startTime;
-				startTime = System.currentTimeMillis();				
+				delta = now - auxTime;
+				auxTime = System.currentTimeMillis();				
 				
 				
 				// processa os cozinheiros
@@ -68,7 +76,6 @@ public class Restaurante {
 				}
 				
 				
-				
 				try
 				{
 					Thread.sleep(1);
@@ -78,6 +85,16 @@ public class Restaurante {
 					
 				}
 			}
+			
+			
+			
+			// clear console
+			for (int i = 0; i < 100; ++i)  
+			       System.out.println();
+			
+			// print all history
+			for(Cozinheiro c : cozinha.GetCozinheiros())
+				c.PrintHistorico();
 		}
 	};
 }

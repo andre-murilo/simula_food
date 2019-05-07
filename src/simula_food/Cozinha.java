@@ -11,12 +11,11 @@ public class Cozinha {
 		cozinheiros = new ArrayList<Cozinheiro>();
 		pedidos = new CFila();
 		
-		// cozinheiros
-		Cozinheiro c1 = new Cozinheiro(this::ItemPreparado);
-		Cozinheiro c2 = new Cozinheiro(this::ItemPreparado);
-		
-		this.AddCozinheiro(c1);
-		//this.AddCozinheiro(c2);
+		// add cozinheiros
+		for(int i = 0; i < 3; i++)
+		{
+			AddCozinheiro(new Cozinheiro("" + i, this::ItemPreparado));
+		}
 		
 	}
 	
@@ -62,10 +61,11 @@ public class Cozinha {
 	// funcao chamada quando o cozinheiro termina o preparo do pedido
 	public Boolean ItemPreparado(CallbackResult result)
 	{
-		System.out.println("Pedido concluido!");
+		
+		//  !!! DEBUG !!!
+		//System.out.println("Pedido concluido!");
 		//System.out.println(result.pedido.GetPrecoTotal());
 		
-	
 		return true;
 	}
 	

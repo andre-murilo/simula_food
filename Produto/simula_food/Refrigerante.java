@@ -16,5 +16,12 @@ public class Refrigerante extends Produto {
 	public TipoProduto GetTipo() {
 		return TipoProduto.Bebida;
 	}
+	
+	
+	@Override
+	public String toString()
+	{
+		return "Refrigerante";
+	}
 
 }

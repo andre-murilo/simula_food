@@ -17,4 +17,9 @@ public class Sanduiche extends Produto {
 		return TipoProduto.FastFood;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "Sanduiche";
+	}
 }
