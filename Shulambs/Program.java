@@ -1,8 +1,76 @@
+import java.util.Random;
 
 public class Program {
 
-	public static void main(String[] args) {
+	private static int[] GerarArray(int size, int tipo)
+	{
+		int[] vetor = new int[size];
+		if(tipo == 1)
+		{
+			// crescente
+			for(int i = 0; i < size; i++)
+			{
+				vetor[i] = i;
+			}
+		}
+		else
+		{
+			// descrescente
+			int aux = 0;
+			for(int i = vetor.length - 1; i > 0; i--)
+			{
+				vetor[aux] = i;
+				aux++;
+			}
+		}
 		
+		
+		return vetor;
+	}
+	
+	private static int[] GerarArrayRandom(int size, int max)
+	{
+		int[] vetor = new int[size];
+		
+		for(int i = 0; i < vetor.length; i++)
+		{
+			Random rand = new Random(System.nanoTime());
+			int value = rand.nextInt(max);
+			
+			vetor[i] = value;
+			//System.out.println(value);
+		}
+		
+		return vetor;
+	}
+	
+	
+	private static void PrintArray(int[] arr)
+	{
+		for(int i = 0; i < arr.length; i++)
+		{
+			System.out.println(arr[i]);
+		}
+	}
+	
+	public static void main(String[] args) 
+	{
+		
+		
+		// parte 1
+		int arraySize = 10;
+		int[] vetorA = GerarArray(arraySize, 1);
+		int[] vetorB = GerarArray(arraySize, 2);
+		int[] vetorC = GerarArrayRandom(arraySize, 100);
+		
+		System.out.println("VetorA");
+		PrintArray(vetorA);
+		
+		System.out.println("VetorB");
+		PrintArray(vetorB);
+		
+		System.out.println("VetorC");
+		PrintArray(vetorC);
 		
 		Clock c = new Clock();
 		c.Start();
