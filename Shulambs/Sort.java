@@ -50,6 +50,29 @@ public class Sort {
 
 	public static void BBSortAdap3(int[] vetor) {
 		// Versão híbrida. Combinar as adaptações 1 e 2.
+
+		// versao alpha
+		int temp;
+		boolean alterado = true;
+		for (int i = 0; i < vetor.length; i++)
+			System.out.print(vetor);
+		System.out.println("");
+		System.out.println("----------");
+		while (alterado) {
+			temp = 0;
+			alterado = false;
+			for (int j = 0; j < vetor.length - 1; j++) {
+				if (vetor[j] > vetor[j + 1]) {
+					temp = vetor[j + 1];
+					vetor[j + 1] = vetor[j];
+					vetor[j] = temp;
+					alterado = true;
+				}
+				System.out.println("");
+				for (int i = 0; i < vetor.length; i++)
+					System.out.print(vetor);
+			}
+		}
 	}
 
 	public static void Selecao(int[] vetor) {
@@ -87,10 +110,58 @@ public class Sort {
 	
 	// --------------------------------------------- MERGE SORT ----------------------------------------------
 	
-	
+	private static void merge(int v[], int start, int middle, int end) {
+		int i, p1, p2;
+		int aux[] = new int[end + 1];
+
+		p1 = start; // "Apontador" do array da metade esquerda
+		p2 = middle + 1; // "Apontador" do array da metade direita
+		i = start; // "Apontador" do array aux[] a conter juncao
+		while (p1 <= middle && p2 <= end) { // Enquanto de para comparar
+			if (v[p1] <= v[p2])
+				aux[i++] = v[p1++]; // Escolher o menor e adicionar
+			else
+				aux[i++] = v[p2++];
+		}
+		while (p1 <= middle)
+			aux[i++] = v[p1++]; // Adicionar o que resta
+		while (p2 <= end)
+			aux[i++] = v[p2++];
+
+		for (i = start; i <= end; i++)
+			v[i] = aux[i]; // Copiar array aux[] para v[]
+	}
+
+	// Ordenar array v[] com mergesort entre posicoes start e end
+	public static void mergesort(int v[], int start, int end) {
+		int middle;
+		if (start < end) { // Parar quando tamanho do array < 2
+			middle = (start + end) / 2; // Calcular ponto medio
+			mergesort(v, start, middle); // Ordenar metade esquerda
+			mergesort(v, middle + 1, end); // Ordenar metade direita
+			merge(v, start, middle, end); // Combinar duas metades ordenadas
+		}
+	}
 	// --------------------------------------------- SHELL SORT ----------------------------------------------
 	
-	
+	public static void shellSort(int[] v) {
+		int i, j, h = 1, value;
+		do {
+			h = 3 * h + 1;
+		} while (h < v.length);
+		do {
+			h = h / 3;
+			for (i = h; i < v.length; i++) {
+				value = v[i];
+				j = i - h;
+				while (j >= 0 && value < v[j]) {
+					v[j + h] = v[j];
+					j = j - h;
+				}
+				v[j + h] = value;
+			}
+		} while (h > 1);
+	}
 	
 	// --------------------------------------------- QUICK SORT ----------------------------------------------
 	private static int particao(int a[], int l, int r) {
