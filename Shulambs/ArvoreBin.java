@@ -307,5 +307,11 @@ public class ArvoreBin {
  
         return no != null ? true : false;
     }
+    
+    
+    public void clear()
+    {
+    	this.raiz = null;
+    }
      
 }

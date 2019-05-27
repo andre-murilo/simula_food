@@ -45,9 +45,9 @@ public class Program {
 	}
 	
 	
-	private static void PrintArray(int[] arr)
+	private static void PrintArray(int[] arr, int len)
 	{
-		for(int i = 0; i < arr.length; i++)
+		for(int i = 0; i < len; i++)
 		{
 			System.out.println(arr[i]);
 		}
@@ -55,63 +55,64 @@ public class Program {
 	
 	public static void main(String[] args) 
 	{
+		// arvores
+		ArvoreBin abp = new ArvoreBin();
+		AVLTree<Integer> avl = new AVLTree<Integer>();
+		
+		// vetor 1
+		int[] a0 = GerarArray(100000, 1);
+		int[] a1 = GerarArray(100000, 2);
+		int[] a2 = GerarArrayRandom(100000, 1000);
+		
+		// vetor 2
+		int[] b0 = GerarArray(100000, 1);
+		int[] b1 = GerarArray(100000, 2);
+		int[] b2 = GerarArray(10000, 1000);
+		
+		// clock
+		Clock clock = new Clock();
 		
 		
-		// parte 1
-		int arraySize = 10;
-		int[] vetorA = GerarArray(arraySize, 1);
-		int[] vetorB = GerarArray(arraySize, 2);
-		int[] vetorC = GerarArrayRandom(arraySize, 100);
+		// **************** PARTE 1 **************** 
 		
-		System.out.println("VetorA");
-		PrintArray(vetorA);
+		// * Insercao abp
+		long nanoElapsedAbpInsert1 = 0;
+		long nanoElapsedAbpInsert2 = 0;
+		long nanoElapsedAbpInsert3 = 0;
 		
-		System.out.println("VetorB");
-		PrintArray(vetorB);
+		// vetor 1
+		clock.Start();
+		for(int i = 0; i < a0.length; i++)
+			abp.put(i, a0[i]);
+		nanoElapsedAbpInsert1 = clock.TimeElepsedMillis();
+		clock.Reset();
+		System.out.println("Inserção ABP Vetor1: " + nanoElapsedAbpInsert1);
 		
-		System.out.println("VetorC");
-		PrintArray(vetorC);
+		// vetor 2
+		clock.Start();
+		for(int i = 0; i < a1.length; i++)
+			abp.put(i, a1[i]);
+		nanoElapsedAbpInsert2 = clock.TimeElepsedMillis();
+		clock.Reset();
+		System.out.println("Inserção ABP Vetor2: " + nanoElapsedAbpInsert2);
 		
-		Clock c = new Clock();
-		c.Start();
-		ArvoreBin binTree = new ArvoreBin();
-		binTree.put(0, 5);
-		binTree.put(1, 8);
-		binTree.put(2, 1);
-		binTree.put(3, 4);
+		// vetor 3
+		clock.Start();
+		for(int i = 0; i < a2.length; i++)
+			abp.put(i, a2[i]);
+		nanoElapsedAbpInsert3 = clock.TimeElepsedMillis();
+		clock.Reset();
+		System.out.println("Inserção ABP Vetor3: " + nanoElapsedAbpInsert3);
 		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		System.out.println("Tempo decorrido: " + c.TimeElepsedMillis() + " milliseconds.");
-		c.Reset();
 		
-				
-		//binTree.imprimeABP(1);
-		//System.out.println(binTree.toString());
-		
-		c.Start();
-		System.out.println("Arvore avl!!!!!\n");
 	
 		AVLTree<Integer> model = new AVLTree<Integer>();
 		model.add(10);
 		model.add(5);
 		model.add(3);
+	
 		
-		try {
-			Thread.sleep(502);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("Tempo decorrido: " + c.TimeElepsed() + " milliseconds.");
-
-		System.out.println(model.size());
 	}
 
 }
