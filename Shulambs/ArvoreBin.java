@@ -1,37 +1,9 @@
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Node;
+
+
 public class ArvoreBin {
- 
-    class CNo {
-        private int chave;
-        private Object valor;
-        private CNo esq, dir;
- 
-        public CNo()
-        {
-            valor = esq = dir = null;
-        }
- 
-        public CNo(int k)
-        {
-            chave = k;
-            valor = esq = dir = null;
-        }
- 
-        public CNo(int k, Object v)
-        {
-            chave = k;
-            valor = v;
-            esq = null;
-            dir = null;
-        }
- 
-        public CNo(int k, Object v, CNo e, CNo d)
-        {
-            chave = k;
-            valor = v;
-            esq = e;
-            dir = d;
-        }
-    }
+	
+
     private CNo raiz = null;
  
     public Object get(int k)
@@ -56,6 +28,51 @@ public class ArvoreBin {
     {
         raiz = put(raiz, k, v);
     }
+    
+    public CNo insertIterative(int key) 
+    {
+    	CNo newnode = new CNo(key);
+        
+        // Pointer to start traversing from root and  
+        // traverses downward path to search  
+        // where the new node to be inserted  
+        CNo x = raiz;  
+        
+        // Pointer y maintains the trailing  
+        // pointer of x  
+        CNo y = null;  
+        
+        while (x != null) {  
+            y = x;  
+            if (key < x.chave)  
+                x = x.esq;  
+            else
+                x = x.dir;  
+        }  
+        
+        // If the root is null i.e the tree is empty  
+        // The new node is the root node  
+        if (y == null)  
+            y = newnode;  
+        
+        // If the new key is less then the leaf node key  
+        // Assign the new node to be its left child  
+        else if (key < y.chave)  
+            y.esq = newnode;  
+        
+        // else assign the new node its right child  
+        else
+            y.dir = newnode;  
+        
+        // Returns the pointer where the  
+        // new node is inserted  
+        if(raiz == null)
+        	raiz = y;
+        
+        return y;  
+    }
+    
+   
  
     private CNo put(CNo no, int k, Object v)
     {

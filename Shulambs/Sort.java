@@ -54,10 +54,6 @@ public class Sort {
 		// versao alpha
 		int temp;
 		boolean alterado = true;
-		for (int i = 0; i < vetor.length; i++)
-			System.out.print(vetor);
-		System.out.println("");
-		System.out.println("----------");
 		while (alterado) {
 			temp = 0;
 			alterado = false;
@@ -68,9 +64,6 @@ public class Sort {
 					vetor[j] = temp;
 					alterado = true;
 				}
-				System.out.println("");
-				for (int i = 0; i < vetor.length; i++)
-					System.out.print(vetor);
 			}
 		}
 	}
